@@ -12,7 +12,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 
-func info(w http.ResponseWriter, r *http.Request) {
+func upgrade(w http.ResponseWriter, r *http.Request) {
 	ws, err := Upgrade(w, r)
 	if err != nil {
 		fmt.Println(err)
@@ -22,7 +22,7 @@ func info(w http.ResponseWriter, r *http.Request) {
 
 func InitServer() {
 	http.HandleFunc("/", homePage)
-	http.HandleFunc("/info", info)
+	http.HandleFunc("/upgrade", upgrade)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 	//log.Fatal(http.ListenAndServeTLS(":443", "certs/server-cert.pem", "certs/server-key.pem", nil))
 }

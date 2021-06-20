@@ -4,7 +4,6 @@
     <title>User Management Challenge</title>
     <meta name="author" content="Gravitational, Inc.">
     <link rel="stylesheet" type="text/css" href="../static/index.css">
-    <script src="../static/scripts.js"></script>
 </head>
 
 <body>
@@ -12,7 +11,7 @@
 <h2 id="data"> </h2>
 <script>
 let dashboard = {};
-const websocket = new WebSocket("wss://localhost:443/info")
+const websocket = new WebSocket("ws://localhost:8080/upgrade")
 
 websocket.onopen = function (event) {
 console.log("connected to websocket")
