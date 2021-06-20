@@ -2,13 +2,13 @@ package server
 
 import (
 	"fmt"
-	"github.com/gravitational/teleport/teleport_admin_service/model"
 	"log"
 	"net/http"
+	"test_websocket/model"
 )
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "index", &model.IndexPage{})
+	RenderTemplate(w, "index", &model.DashboardInfo{})
 }
 
 
@@ -23,5 +23,6 @@ func info(w http.ResponseWriter, r *http.Request) {
 func InitServer() {
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/info", info)
-	log.Fatal(http.ListenAndServeTLS(":443", "certs/server-cert.pem", "certs/server-key.pem", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
+	//log.Fatal(http.ListenAndServeTLS(":443", "certs/server-cert.pem", "certs/server-key.pem", nil))
 }

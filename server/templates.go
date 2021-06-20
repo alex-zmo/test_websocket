@@ -1,7 +1,6 @@
 package server
 
 import (
-	"github.com/gravitational/teleport/teleport_admin_service/server/utils"
 	"html/template"
 	"log"
 	"net/http"
@@ -14,6 +13,6 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, p interface{}) {
 	err := templates.ExecuteTemplate(w, tmpl+".tmpl", p)
 	if err != nil {
 		log.Printf("Temlate error here: %v", err)
-		utils.ServeInternalServerError(w)
+		w.WriteHeader(http.StatusInternalServerError)
 	}
 }
